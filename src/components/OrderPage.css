@@ -1158,8 +1158,8 @@
 
         width: 360px;
         height: 24px;
-
-        /* margin-bottom: 20px; */
+        /* margin-top: 20px;
+        margin-bottom: 20px; */
 
     }
 
@@ -1201,8 +1201,8 @@
     }
 
     .tovar_so_sklada {
-        margin-top: 20px;
-        margin-bottom: 20px;
+        /* margin-top: 20px;
+        margin-bottom: 20px; */
 
 
         /* Reg 20 */

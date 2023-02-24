@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './ProductCard.css';
 import item_1 from '../resources/item_1.png'
 import item_2 from '../resources/item_2.png'
@@ -6,12 +7,28 @@ import item_2 from '../resources/item_2.png'
 import icon from '../resources/icon.png'
 import grey_line from '../resources/grey_line.png'
 import ProductPrice from '../components/ProductPrice'
+import ProductSizes from '../components/ProductSizes'
 
 
 
 const ProductCard = ({ productsData }) => {
-    const { name, articl, season, price, discountPrice, img } = productsData;
+    const { name, articl, season, price, discountPrice, img, sizes } = productsData;
+    // const [productsDatatest, setProductsDatatest] = useState(productsData)
+    // const { name, articl, season, price, discountPrice, img } = productsDatatest;
 
+
+    // const test = () => {
+       
+    //     setProductsDatatest(
+    //         {
+    //             name: '123'
+    //         }
+    //     )
+    // }
+
+
+
+    
     
     return (
         <div>
@@ -29,13 +46,9 @@ const ProductCard = ({ productsData }) => {
                                 <div className='season'>Сезон</div>
                                 <div className='season_name'>{season}</div>
                             </div>
-                            <div className='product_sizes'>
-                                <div className='size_xs'>XS</div>
-                                <div className='size_s'>S</div>
-                                <div className='size_m'>M</div>
-                                <div className='size_l'>L</div>
-                                <div className='size_xl'>XL</div>
-                            </div>
+
+                           <ProductSizes sizes={sizes}/>
+
                             <div className='product_color'>
                                 <div className='color_black'>
                                     <input type="radio" className='color_black_radio' name="123" id="black" value="black" checked></input>

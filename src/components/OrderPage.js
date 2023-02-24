@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { addItem, removeItem } from '../redux/features/shop/cartSlice'
 import './OrderPage.css';
 import logo from '../resources/logo.png'
 import grey_line from '../resources/grey_line.png'
@@ -17,6 +19,9 @@ import maps from '../resources/maps.png'
 import ProductCard from './ProductCard';
 import ShoppingCart from './ShoppingCart'
 
+
+
+
 const productsList = [
     {
         id: 1,
@@ -28,11 +33,11 @@ const productsList = [
         img: item_1,
         sizes: [
             {
-                xs: '10',
-                x: '10',
-                m: '10',
-                l: '10',
-                xl: '10'
+                XS: 0,
+                S: 10,
+                M: 10,
+                L: 10,
+                XL: 10
             }
         ],
         colors: [
@@ -53,11 +58,11 @@ const productsList = [
         img: item_2,
         sizes: [
             {
-                xs: '10',
-                x: '10',
-                m: '10',
-                l: '0',
-                xl: '0'
+                XS: 10,
+                S: 10,
+                M: 0,
+                L: 1,
+                XL: 10
             }
         ],
         colors: [
@@ -77,11 +82,28 @@ const getProductCards = () =>{
     
 }
 
-const OrderPage = () => {
 
+const OrderPage = () => {
+    const itemsFromRedux = useSelector(state => state.cart.items);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (!itemsFromRedux?.length) {
+          dispatch(
+            addItem({
+              name: "Converse",
+              size: 42,
+              images: ["link1", "link2"],
+            })
+          );
+        }
+    }, [itemsFromRedux?.length]);
+    console.log(itemsFromRedux)
+    
+    
 
     return (
         <div className='order_page'>
+            
             <div className='header_menu'>
                 <div className='left_menu'>
                     <div className='catalog'>Каталог</div>
@@ -115,7 +137,7 @@ const OrderPage = () => {
                             </div>
                         </div>
                         <div className='order'>
-                            <div className='summ_orders'>3 товара на сумму 25 000 ₽</div>
+                            <div className='summ_orders'>2 товара на сумму 10 500 ₽</div>
                             <img className='grey_line' src={grey_line} alt='img'></img>
 
                             <div className='products'>

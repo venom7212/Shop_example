@@ -291,7 +291,7 @@
 
     }
 
-    .size_xs {
+    .normal_btn {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -305,6 +305,42 @@
         font-size: 12px;
         line-height: 15px;
 
+    }
+    .unavailable_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #F1F1F1;
+        border-radius: 6px;
+        width: 30px;
+        height: 30px;
+        font-family: 'Helvetica';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #C8C8C8;
+
+    }
+    .black_btn{
+        background: #000000;
+        border-radius: 6px;
+        width: 30px;
+        height: 30px;
+        font-family: 'Helvetica';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .size_xs2{
+        background:blue;
     }
 
     .size_s {
@@ -323,22 +359,7 @@
 
     }
 
-    .size_m {
-        background: #000000;
-        border-radius: 6px;
-        width: 30px;
-        height: 30px;
-        font-family: 'Helvetica';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 15px;
-        color: #FFFFFF;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-    }
+    
 
 
     .size_l {

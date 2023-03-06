@@ -1,6 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { addItem, removeItem } from '../redux/features/shop/cartSlice'
+
+// import Counter from './Counter';
+// import { increment, decrement,incrementByAmount } from '../redux/features/shop/testSlice'
+
 import './OrderPage.css';
 import logo from '../resources/logo.png'
 import grey_line from '../resources/grey_line.png'
@@ -10,17 +13,15 @@ import favorite from '../resources/favorite.png'
 import products from '../resources/products.png'
 import item_1 from '../resources/item_1.png'
 import item_2 from '../resources/item_2.png'
+import maps from '../resources/maps.png'
+import ProductCard from './ProductCard';
+import ShoppingCart from './ShoppingCart';
+
+
 // import icon from '../resources/icon.png'
 // import plus from '../resources/plus.png'
 // import minus from '../resources/minus.png'
-import maps from '../resources/maps.png'
 // import toggle from '../resources/toggle.png'
-
-import ProductCard from './ProductCard';
-import ShoppingCart from './ShoppingCart'
-
-
-
 
 const productsList = [
     {
@@ -54,7 +55,7 @@ const productsList = [
         articl: '891-256',
         season: 'Демисезон',
         price: 500,
-        discountPrice: '',
+        discountPrice: 0,
         img: item_2,
         sizes: [
             {
@@ -75,35 +76,41 @@ const productsList = [
     }
 ]
 
-const getProductCards = () =>{
-    return productsList.map((item,index) => {
-        return <ProductCard productsData={item} key={index}/>
+const getProductCards = () => {
+    return productsList.map((item, index) => {
+        return <ProductCard productsData={item} key={index} />
     });
-    
+
 }
 
-
 const OrderPage = () => {
-    const itemsFromRedux = useSelector(state => state.cart.items);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (!itemsFromRedux?.length) {
-          dispatch(
-            addItem({
-              name: "Converse",
-              size: 42,
-              images: ["link1", "link2"],
-            })
-          );
-        }
-    }, [itemsFromRedux?.length]);
-    console.log(itemsFromRedux)
-    
-    
+    const sumPriceState = useSelector(state => state.sumPrice.sumPriceProduct)
+    const sumCount = useSelector(state => state.sumCount.sumCountProduct)
+
+
+
+
+
+    // const itemsFromRedux = useSelector(state => state.cart.items);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     if (!itemsFromRedux?.length) {
+    //         dispatch(
+    //             addItem({
+    //                 name: "Converse",
+    //                 size: 421,
+    //                 images: ["link1", "link2"],
+    //             })
+    //         );
+    //     }
+    // }, [itemsFromRedux?.length]);
+    // console.log(itemsFromRedux)
+
+
 
     return (
         <div className='order_page'>
-            
+
             <div className='header_menu'>
                 <div className='left_menu'>
                     <div className='catalog'>Каталог</div>
@@ -137,18 +144,25 @@ const OrderPage = () => {
                             </div>
                         </div>
                         <div className='order'>
-                            <div className='summ_orders'>2 товара на сумму 10 500 ₽</div>
+                            <div className='summ_orders'>{sumCount} товара на сумму {sumPriceState} ₽</div>
+
+
+
+
+
+
+
                             <img className='grey_line' src={grey_line} alt='img'></img>
 
                             <div className='products'>
 
                                 {productsList.length ? getProductCards() : <p>Добавьте товар в корзину</p>}
-                           
+
                             </div>
                         </div>
                     </div>
 
-                    <ShoppingCart/>
+                    <ShoppingCart />
 
                 </div>
                 <div className='bottom_info'>

@@ -306,6 +306,7 @@
         line-height: 15px;
 
     }
+
     .unavailable_btn {
         display: flex;
         align-items: center;
@@ -322,7 +323,8 @@
         color: #C8C8C8;
 
     }
-    .black_btn{
+
+    .black_btn {
         background: #000000;
         border-radius: 6px;
         width: 30px;
@@ -339,8 +341,8 @@
 
     }
 
-    .size_xs2{
-        background:blue;
+    .size_xs2 {
+        background: blue;
     }
 
     .size_s {
@@ -359,7 +361,7 @@
 
     }
 
-    
+
 
 
     .size_l {
@@ -512,8 +514,8 @@
 
     }
 
-    .div_delete{
-        margin-left:4.5px;
+    .div_delete {
+        margin-left: 4.5px;
 
     }
 
@@ -899,7 +901,7 @@
         box-sizing: border-box;
 
         /* Auto layout */
-        
+
         display: flex;
         flex-direction: row;
         align-items: flex-start;
@@ -1265,6 +1267,30 @@
         margin-left: auto;
         margin-right: 0px;
     }
+
+
+    .test_btn {
+        display: flex;
+
+    }
+
+    .circle_div {
+        position: relative;
+    }
+
+    .track_div {
+        margin-left: -45px;
+        
+        
+    }
+
+    .trackOff_div {
+        margin-left: -10px;
+
+        
+        
+    }
+
 
     .srok_delivery {
         margin-top: 7px;

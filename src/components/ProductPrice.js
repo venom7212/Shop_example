@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import minus from '../resources/minus.png'
 import plus from '../resources/plus.png'
+import { useSelector, useDispatch } from 'react-redux'
+import { inctPrice, decPrice} from '../redux/features/shop/sumPriceSlice'
+import { decCount,inctCount} from '../redux/features/shop/sumCountSlice.js'
+import { incSumDisc,decSumDisc,incSalesDisc,decSalesDisc} from '../redux/features/shop/sumDiscountSlice.js'
+
+
 
 
 
@@ -9,6 +15,16 @@ const ProductPrice = ({ price, discountPrice }) => {
     const [count, setCount] = useState(1);
     const [priceCount, setPriceCount] = useState(priceReal)
     const [priceBeforDiscount, setPriceBeforDiscount] = useState(price)
+    const [sumDiscountProduct, setSumDiscountProduct] = useState(price)
+
+    
+    // const sumPriceState = useSelector(state => state.sumPrice.sumBro)
+    // const sumCount = useSelector(state => state.sumCount.sumCountProduct)
+    // console.log(priceBeforDiscount)
+    // console.log('slice:'+sumCount)
+    // console.log('count'+count)
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
 
@@ -18,11 +34,20 @@ const ProductPrice = ({ price, discountPrice }) => {
         setPriceCount(
             priceReal * count
         )
+        // dispatch(incSumDisc(sumDiscountProduct))
+
+        // dispatch(defstate(priceReal))
+       
 
     }, [count]);
 
     const increase = () => {
         setCount(count + 1);
+        dispatch(inctPrice(priceReal))
+        dispatch(inctCount(count))
+        dispatch(incSumDisc(sumDiscountProduct))
+        dispatch(incSalesDisc(discountPrice))
+
     }
 
     const decrease = () => {
@@ -30,6 +55,11 @@ const ProductPrice = ({ price, discountPrice }) => {
             return;
         }
         setCount(count - 1);
+        dispatch(decPrice(priceReal))
+        dispatch(decCount(count))
+        dispatch(decSumDisc(sumDiscountProduct)) 
+        dispatch(decSalesDisc(discountPrice))
+
     }
 
     return (
@@ -38,6 +68,12 @@ const ProductPrice = ({ price, discountPrice }) => {
                 {price !== priceReal ? <div className='product_old_price'>{price} ₽</div> : null}
                 <div className='product_new_price'>{priceReal} ₽</div>
             </div>
+
+
+            {/* <div>test : and{sumPriceState}</div> */}
+
+
+
             <div className='product_quanity'>
                 <img className='quanity_minus' onClick={decrease} src={minus} alt='img'></img>
                 <div className='quanity_count'>{count}</div>

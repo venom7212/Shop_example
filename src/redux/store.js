@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import cartReducer from './features/shop/cartSlice';
+import sumPriceReducer from './features/shop/sumPriceSlice';
+import sumCountReducer from './features/shop/sumCountSlice.js';
+import sumDiscountReducer from './features/shop/sumDiscountSlice.js';
 
 export default configureStore({
 	reducer: {
-		cart: cartReducer,
-		// next slice,
+		sumPrice: sumPriceReducer,
+		sumCount: sumCountReducer,
+		sumDiscount: sumDiscountReducer,
+
 	}
 })

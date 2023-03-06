@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState,useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+
+
 import './ProductCard.css';
-import item_1 from '../resources/item_1.png'
-import item_2 from '../resources/item_2.png'
+// import item_1 from '../resources/item_1.png'
+// import item_2 from '../resources/item_2.png'
 
 import icon from '../resources/icon.png'
-import grey_line from '../resources/grey_line.png'
+// import grey_line from '../resources/grey_line.png'
 import ProductPrice from '../components/ProductPrice'
 import ProductSizes from '../components/ProductSizes'
 
@@ -15,7 +17,11 @@ const ProductCard = ({ productsData }) => {
     const { name, articl, season, price, discountPrice, img, sizes } = productsData;
     // const [productsDatatest, setProductsDatatest] = useState(productsData)
     // const { name, articl, season, price, discountPrice, img } = productsDatatest;
-
+    // const itemsFromRedux = useSelector(state => state.cart.items);
+    // const products = useSelector((state) => state.cart.items);
+    // useEffect(() => {
+    //     console.log("Converse :"+products);
+    // }, [products?.length]);
 
     // const test = () => {
        
@@ -26,10 +32,6 @@ const ProductCard = ({ productsData }) => {
     //     )
     // }
 
-
-
-    
-    
     return (
         <div>
             <div className='product_card'>

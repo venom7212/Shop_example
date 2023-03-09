@@ -17,13 +17,6 @@ const ProductPrice = ({ price, discountPrice }) => {
     const [priceBeforDiscount, setPriceBeforDiscount] = useState(price)
     const [sumDiscountProduct, setSumDiscountProduct] = useState(price)
 
-    
-    // const sumPriceState = useSelector(state => state.sumPrice.sumBro)
-    // const sumCount = useSelector(state => state.sumCount.sumCountProduct)
-    // console.log(priceBeforDiscount)
-    // console.log('slice:'+sumCount)
-    // console.log('count'+count)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -34,10 +27,6 @@ const ProductPrice = ({ price, discountPrice }) => {
         setPriceCount(
             priceReal * count
         )
-        // dispatch(incSumDisc(sumDiscountProduct))
-
-        // dispatch(defstate(priceReal))
-       
 
     }, [count]);
 

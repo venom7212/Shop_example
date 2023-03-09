@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
-// import Counter from './Counter';
-// import { increment, decrement,incrementByAmount } from '../redux/features/shop/testSlice'
-
 import './OrderPage.css';
 import logo from '../resources/logo.png'
 import grey_line from '../resources/grey_line.png'
@@ -13,15 +10,12 @@ import favorite from '../resources/favorite.png'
 import products from '../resources/products.png'
 import item_1 from '../resources/item_1.png'
 import item_2 from '../resources/item_2.png'
-import maps from '../resources/maps.png'
 import ProductCard from './ProductCard';
 import ShoppingCart from './ShoppingCart';
+import Maps from './Maps';
 
+import SearchInput from './SearchInput';
 
-// import icon from '../resources/icon.png'
-// import plus from '../resources/plus.png'
-// import minus from '../resources/minus.png'
-// import toggle from '../resources/toggle.png'
 
 const productsList = [
     {
@@ -83,31 +77,11 @@ const getProductCards = () => {
 
 }
 
+
+
 const OrderPage = () => {
     const sumPriceState = useSelector(state => state.sumPrice.sumPriceProduct)
     const sumCount = useSelector(state => state.sumCount.sumCountProduct)
-
-
-
-
-
-    // const itemsFromRedux = useSelector(state => state.cart.items);
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     if (!itemsFromRedux?.length) {
-    //         dispatch(
-    //             addItem({
-    //                 name: "Converse",
-    //                 size: 421,
-    //                 images: ["link1", "link2"],
-    //             })
-    //         );
-    //     }
-    // }, [itemsFromRedux?.length]);
-    // console.log(itemsFromRedux)
-
-
-
     return (
         <div className='order_page'>
 
@@ -145,25 +119,13 @@ const OrderPage = () => {
                         </div>
                         <div className='order'>
                             <div className='summ_orders'>{sumCount} товара на сумму {sumPriceState} ₽</div>
-
-
-
-
-
-
-
                             <img className='grey_line' src={grey_line} alt='img'></img>
-
                             <div className='products'>
-
                                 {productsList.length ? getProductCards() : <p>Добавьте товар в корзину</p>}
-
                             </div>
                         </div>
                     </div>
-
                     <ShoppingCart />
-
                 </div>
                 <div className='bottom_info'>
                     <div className='contacts_info'>
@@ -179,7 +141,8 @@ const OrderPage = () => {
                                     <input className='contacts_email' placeholder='Email'></input>
                                 </div>
                                 <div>
-                                    <input className='contacts_adress' value='г. Санкт-Петербург, пр. Просвещения, д. 99, кв. 152' placeholder=''></input>
+                                    {/* <input className='contacts_adress' value='г. Санкт-Петербург, пр. Просвещения, д. 99, кв. 152' placeholder=''></input> */}
+                                    <SearchInput/>
                                     <img className='search_adress' src={search} alt='img'></img>
                                 </div>
                             </div>
@@ -206,8 +169,12 @@ const OrderPage = () => {
                         </div>
                     </div>
                     <div className='contacts_map'>
-                        <img className='maps' src={maps} alt='img'></img>
+                        <div className='maps'>
+                            <Maps/>
+                        </div>
                     </div>
+
+
                 </div>
 
             </div>

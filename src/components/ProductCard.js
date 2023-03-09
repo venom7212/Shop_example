@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 
-import './ProductCard.css';
+// import './ProductCard.css';
 // import item_1 from '../resources/item_1.png'
 // import item_2 from '../resources/item_2.png'
 

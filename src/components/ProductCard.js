@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 
 
@@ -24,7 +24,7 @@ const ProductCard = ({ productsData }) => {
     // }, [products?.length]);
 
     // const test = () => {
-       
+
     //     setProductsDatatest(
     //         {
     //             name: '123'
@@ -49,7 +49,7 @@ const ProductCard = ({ productsData }) => {
                                 <div className='season_name'>{season}</div>
                             </div>
 
-                           <ProductSizes sizes={sizes}/>
+                            <ProductSizes sizes={sizes} />
 
                             <div className='product_color'>
                                 <div className='color_black'>
@@ -69,12 +69,11 @@ const ProductCard = ({ productsData }) => {
                 </div>
                 <div className='product_price_and_delete'>
 
-                   <ProductPrice price={price} discountPrice={discountPrice} />
-                    
-                    <div className='div_delete'>
-                        <img className='product_delete' src={icon} alt=''></img>
-                    </div>
+                    <ProductPrice price={price} discountPrice={discountPrice} />
 
+                </div>
+                <div className='div_delete'>
+                    <img className='product_delete' src={icon} alt=''></img>
                 </div>
 
             </div>

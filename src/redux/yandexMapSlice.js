@@ -6,10 +6,15 @@ export const yandexMapSlice = createSlice({
         // const defState = { center: [55.75, 37.57], zoom: 12 }
         center: [55.75, 37.57],
         zoom: 12,
-        placemark:[57.10179281015839, 65.56507499552873],
-        adress:{
-            value:'г Тюмень, ул Федюнинского, д 56'
-        }
+        // placemark:[57.10179281015839, 65.56507499552873],
+        placemark:['',''],
+
+        // adress:{
+        //     value:'г Тюмень, ул Федюнинского, д 56'
+        // }
+        adress:[
+            {value:0}        
+        ]
         // sumDiscountAll: 2500,
         // sumDiscountTotal: 10200,
     },

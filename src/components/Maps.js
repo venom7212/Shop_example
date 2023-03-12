@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { YMaps, Map, Placemark, Button } from '@pbe/react-yandex-maps';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCenter, setZoom, setPlacemark, setAdress } from '../redux/yandexMapSlice'
-
-
-
+import skinMarker from '../resources/marker.png'
 
 
 const Maps = () => {
@@ -15,19 +13,19 @@ const Maps = () => {
     const center = useSelector(state => state.yandexMap.center)
     const zoom = useSelector(state => state.yandexMap.zoom)
     const marker = useSelector(state => state.yandexMap.placemark)
-    
+
     const latMarker = marker[0]
     const lonMarker = marker[1]
 
+
     const dispatch = useDispatch()
+
     useEffect(() => {
+        // console.log('useeffect', marker)
+        clickTest();
 
 
-        console.log('useeffect',marker)
-                        clickTest();
-
-
-    },[marker]);
+    }, [marker]);
 
     const testClick1 = () => {
         dispatch(setCenter(coords1))
@@ -40,49 +38,74 @@ const Maps = () => {
         dispatch(setCenter(coords2))
         dispatch(setZoom(coords2Z))
     }
-    const clickTest = async () => {
-        let url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/address";
-        let token = "e6940338b0f29a6df43889de6c2aa9517f6c2b2f";
-        let query = { lat: latMarker, lon: lonMarker, radius_meters: 15, count: 1 };
 
-        let options = {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": "Token " + token
-            },
-            body: JSON.stringify(query)
-        };
-        try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            console.log(result.suggestions[0]);
-            console.log('testClick coords',latMarker,lonMarker)
-            dispatch(setAdress(result.suggestions[0]));
-        } catch (error) {
-            console.log("error111", error);
+    const clickTest = async () => {
+        if (latMarker !== '') {
+            let url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/geolocate/address";
+            let token = "e6940338b0f29a6df43889de6c2aa9517f6c2b2f";
+            let query = { lat: latMarker, lon: lonMarker, radius_meters: 35, count: 5 };
+
+            let options = {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": "Token " + token
+                },
+                body: JSON.stringify(query)
+            };
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                console.log('resultPOST', result.suggestions);
+                console.log('testClick coords', latMarker, lonMarker)
+                // dispatch(setAdress(result.suggestions[0]));
+                dispatch(setAdress(result.suggestions));
+
+            } catch (error) {
+                console.log("error", error);
+            }
         }
+        else {
+            console.log('marker empty')
+        }
+
     };
     // const defState = { center: [55.75, 37.57], zoom: 12 }
     return (
         <YMaps query={{ apikey: '69a2594c-e775-413a-a099-0ec552e47048' }}>
             <div className='yMap'>
                 <Map
-                    width="400px"
-                    height="450px"
+                    className='yMap2'
+                    // width="400px"
+                    // height="450px"
                     defaultState={{ center: center, zoom: zoom }}
                     state={{ center: center, zoom: zoom, controls: ["zoomControl", "fullscreenControl"] }}
                     modules={["control.ZoomControl", "control.FullscreenControl"]}
                     onClick={(event) => {
-                        console.log('click marker',marker);
+                        // console.log('click marker', marker);
                         dispatch(setPlacemark(event.get('coords')));
-                      }}
+                    }}
                 >
-                    <Placemark
-                        geometry={marker}
+                    <Button
+                        options={{ maxWidth: 128 }}
+                        data={{ content: "DEL MARKERK" }}
+                        onClick={() => {
+                            dispatch(setPlacemark(['', '']))
+
+                        }}
                     />
+                    {marker && (
+                        <Placemark
+                            geometry={marker}
+                            options={
+                                { iconLayout: 'default#image', iconImageHref: skinMarker, iconImageSize: [26.43, 38.7] }
+                            }
+                        />
+
+                    )}
+
                 </Map>
 
                 <button onClick={testClick1}>tmn</button>

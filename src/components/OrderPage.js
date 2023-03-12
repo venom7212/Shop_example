@@ -37,9 +37,9 @@ const productsList = [
         ],
         colors: [
             {
-                black: true,
-                blue: true,
-                brown: true,
+                black: 10,
+                blue: 10,
+                brown: 10,
             }
         ],
     },
@@ -62,9 +62,9 @@ const productsList = [
         ],
         colors: [
             {
-                black: true,
-                blue: false,
-                brown: false,
+                black: 10,
+                blue: 0,
+                brown: 0,
             }
         ],
     }
@@ -133,7 +133,7 @@ const OrderPage = () => {
                             <div className='contacts'>Контактные данные</div>
                             <div className='info_con'>
                                 <div className='contacts_name_second'>
-                                    <input className='contacts_name' value='Александр' placeholder='Имя'></input>
+                                    <input className='contacts_name'  placeholder='Имя'></input>
                                     <input className='contacts_second_name' placeholder='Фамилия'></input>
                                 </div>
                                 <div className='contacts_phone_email'>

@@ -90,7 +90,7 @@ const Maps = () => {
                 >
                     <Button
                         options={{ maxWidth: 128 }}
-                        data={{ content: "DEL MARKERK" }}
+                        data={{ content: "DEL MARKER" }}
                         onClick={() => {
                             dispatch(setPlacemark(['', '']))
 

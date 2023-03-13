@@ -140,7 +140,7 @@ const OrderPage = () => {
                                     <input className='contacts_phone' placeholder='Телефон'></input>
                                     <input className='contacts_email' placeholder='Email'></input>
                                 </div>
-                                <div>
+                                <div className='search_contacts_adress'>
                                     {/* <input className='contacts_adress' value='г. Санкт-Петербург, пр. Просвещения, д. 99, кв. 152' placeholder=''></input> */}
                                     <SearchInput/>
                                     <img className='search_adress' src={search} alt='img'></img>

@@ -45,7 +45,7 @@ const SearchInput = () => {
   }, [markerAdress]);
 
   return (
-    <div>
+    <div >
       <input
         className='contacts_adress'
         value={markerAdress[0].value == 0 ? null : test}

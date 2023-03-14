@@ -57,7 +57,7 @@ const SearchInput = () => {
       >
 
       </input>
-      <button onClick={clickTest2}>123</button>
+      {/* <button onClick={clickTest2}>123</button> */}
     </div>
   );
 }

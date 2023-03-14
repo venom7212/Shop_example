@@ -63,8 +63,6 @@ const productsList = [
         colors: [
             {
                 black: 10,
-                blue: 0,
-                brown: 0,
             }
         ],
     }
@@ -82,6 +80,7 @@ const getProductCards = () => {
 const OrderPage = () => {
     const sumPriceState = useSelector(state => state.sumPrice.sumPriceProduct)
     const sumCount = useSelector(state => state.sumCount.sumCountProduct)
+
     return (
         <div className='order_page'>
 
@@ -125,7 +124,7 @@ const OrderPage = () => {
                             </div>
                         </div>
                     </div>
-                    <ShoppingCart />
+                    <div className='ShoppingCart_1240'><ShoppingCart /></div> 
                 </div>
                 <div className='bottom_info'>
                     <div className='contacts_info'>
@@ -133,7 +132,7 @@ const OrderPage = () => {
                             <div className='contacts'>Контактные данные</div>
                             <div className='info_con'>
                                 <div className='contacts_name_second'>
-                                    <input className='contacts_name'  placeholder='Имя'></input>
+                                    <input className='contacts_name' placeholder='Имя'></input>
                                     <input className='contacts_second_name' placeholder='Фамилия'></input>
                                 </div>
                                 <div className='contacts_phone_email'>
@@ -142,11 +141,19 @@ const OrderPage = () => {
                                 </div>
                                 <div className='search_contacts_adress'>
                                     {/* <input className='contacts_adress' value='г. Санкт-Петербург, пр. Просвещения, д. 99, кв. 152' placeholder=''></input> */}
-                                    <SearchInput/>
+                                    <SearchInput />
                                     <img className='search_adress' src={search} alt='img'></img>
                                 </div>
                             </div>
                         </div>
+                        <div className='contacts_map'>
+                        <div className='maps'>
+                            <Maps />
+                        </div>
+                    </div>
+
+                    </div>
+                    <div className='kekw'>
                         <div className='pay_info'>
                             <div className='pay_info_header'>Оплата</div>
                             <div className='cash'>
@@ -167,12 +174,10 @@ const OrderPage = () => {
                             <textarea className='pay_comment_input' placeholder='Комментарий к заказу'></textarea>
                             <div className='pay_comment_symbol'>Использовано 0/142 символов</div>
                         </div>
-                    </div>
-                    <div className='contacts_map'>
-                        <div className='maps'>
-                            <Maps/>
                         </div>
-                    </div>
+                   
+                        <div className='ShoppingCart_1239'><ShoppingCart /></div> 
+
 
 
                 </div>

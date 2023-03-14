@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import circle from '../resources/knob.png'
-import track from '../resources/track.png'
+import activeOff from '../resources/active_off.png'
+import activeOn from '../resources/active_on.png'
 import grey_line from '../resources/grey_line.png'
 import { setDeliveryState } from '../redux/features/shop/sumDiscountSlice.js'
 import { setPromoValue } from '../redux/features/shop/sumDiscountSlice.js'
@@ -19,7 +19,6 @@ const ShoppingCart = () => {
 
     const totalDisc = sumDiscountSales + sumDiscountPromo
     const totalPrice = sumPriceState - sumDiscountPromo + sumDiscountDelivery
-    const buttonStyle = `track_div ${isActive ? 'trackOff_div' : ''}`
 
 
     const dispatch = useDispatch()
@@ -45,44 +44,25 @@ const ShoppingCart = () => {
         console.log('Zakaz oformlen')
     }
 
-    // const inputHandler = (e, code) => {
-    //     const value = e.currentTarget.value
-    //     code(value)
-    //     console.log(promoVerification)
-    //     if (promoVerification == '777') {
-    //         dispatch(setPromoValue(700))
-    //     }
-    //     if (promoVerification == '666') {
-    //         dispatch(setPromoValue(500))
-
-    //     }
-    //     if (promoVerification == '123') {
-    //         dispatch(setPromoValue(100))
-
-    //     }
-    //     else {
-    //         dispatch(setPromoValue(0))
-    //     }
-    // }
     const inputHandler = (e, code) => {
         const value = e.currentTarget.value
         code(value)
         const promoVerification = value.trim().toLowerCase()
-        switch(promoVerification) {
-          case '777':
-            dispatch(setPromoValue(700))
-            break
-          case '666':
-            dispatch(setPromoValue(500))
-            break
-          case '123':
-            dispatch(setPromoValue(100))
-            break
-          default:
-            dispatch(setPromoValue(0))
+        switch (promoVerification) {
+            case '777':
+                dispatch(setPromoValue(700))
+                break
+            case '666':
+                dispatch(setPromoValue(500))
+                break
+            case '123':
+                dispatch(setPromoValue(100))
+                break
+            default:
+                dispatch(setPromoValue(0))
         }
-      }
-    
+    }
+
     return (
         <div className='shopping_cart'>
             <div className='cart_numbers'>
@@ -112,14 +92,17 @@ const ShoppingCart = () => {
                 <div className='tovar_sklad'>
                     <div className='tovad_take'>Получить товар со склада</div>
                     <div className='sklad_togle'>
+
                         <div className='test_btn' onClick={changeDelivery}>
-                            <div className='circle_div'>
-                                <img className='circle_img' src={circle} alt='img'></img>
-                            </div>
-                            <div className={buttonStyle}>
-                                <img className='track_img' src={track} alt='img'></img>
-                            </div>
+                            {
+                                isActive == false ?
+                                    <img className='' src={activeOff} alt='img'></img>
+                                    : <img className='' src={activeOn} alt='img'></img>
+                            }
+   
+
                         </div>
+
                     </div>
                 </div>
                 <div className='srok_delivery'>Сроки получения могут измениться</div>

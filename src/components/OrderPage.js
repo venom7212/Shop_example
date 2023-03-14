@@ -124,8 +124,11 @@ const OrderPage = () => {
                             </div>
                         </div>
                     </div>
+                    
                     <div className='ShoppingCart_1240'><ShoppingCart /></div> 
+                    
                 </div>
+                
                 <div className='bottom_info'>
                     <div className='contacts_info'>
                         <div className='all_contacts_info'>

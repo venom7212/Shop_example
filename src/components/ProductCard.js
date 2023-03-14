@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 // import './ProductCard.css';
 // import item_1 from '../resources/item_1.png'
 // import item_2 from '../resources/item_2.png'
-
+import grey_line from '../resources/grey_line.png'
 import icon from '../resources/icon.png'
 // import grey_line from '../resources/grey_line.png'
 import ProductPrice from '../components/ProductPrice'
@@ -66,6 +66,7 @@ const ProductCard = ({ productsData }) => {
                 </div>
 
             </div>
+            <img className='grey_line' src={grey_line} alt='img'></img>
 
         </div>
     )

@@ -7,7 +7,7 @@ import grey_line from '../resources/grey_line.png'
 import search from '../resources/search.png'
 import account from '../resources/account.png'
 import favorite from '../resources/favorite.png'
-import products from '../resources/products.png'
+import bag from '../resources/bag.png'
 import item_1 from '../resources/item_1.png'
 import item_2 from '../resources/item_2.png'
 import ProductCard from './ProductCard';
@@ -95,7 +95,7 @@ const OrderPage = () => {
                     <img className='search_btn' src={search} alt='img'></img>
                     <img className='account_btn' src={account} alt='img'></img>
                     <img className='favorite_btn' src={favorite} alt='img'></img>
-                    <img className='products_btn' src={products} alt='img'></img>
+                    <img className='products_btn' src={bag} alt='img'></img>
                 </div>
             </div>
             <div className='grey_line2' >

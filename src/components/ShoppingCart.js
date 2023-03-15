@@ -31,12 +31,12 @@ const ShoppingCart = () => {
             setActive(
                 true
             )
-            dispatch(setDeliveryState(200))
+            dispatch(setDeliveryState(0))
         } else {
             setActive(
                 false
             )
-            dispatch(setDeliveryState(0))
+            dispatch(setDeliveryState(200))
         }
         setActive(
             !isActive

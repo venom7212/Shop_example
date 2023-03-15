@@ -7,7 +7,7 @@ export const sumDiscountSlice = createSlice({
         sumDiscountSales: 2000,
         // sumDiscountAll: 2500,
         sumDiscountPromo: 0,
-        sumDiscountDelivery: 0,
+        sumDiscountDelivery: 200,
         // sumDiscountTotal: 10200,
     },
     reducers: {

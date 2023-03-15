@@ -17,22 +17,7 @@ import ProductColor from '../components/ProductColor'
 
 const ProductCard = ({ productsData }) => {
     const { name, articl, season, price, discountPrice, img, sizes, colors } = productsData;
-    // const [productsDatatest, setProductsDatatest] = useState(productsData)
-    // const { name, articl, season, price, discountPrice, img } = productsDatatest;
-    // const itemsFromRedux = useSelector(state => state.cart.items);
-    // const products = useSelector((state) => state.cart.items);
-    // useEffect(() => {
-    //     console.log("Converse :"+products);
-    // }, [products?.length]);
 
-    // const test = () => {
-
-    //     setProductsDatatest(
-    //         {
-    //             name: '123'
-    //         }
-    //     )
-    // }
 
     return (
         <div>

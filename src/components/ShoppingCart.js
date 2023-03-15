@@ -20,6 +20,9 @@ const ShoppingCart = () => {
     const totalDisc = sumDiscountSales + sumDiscountPromo
     const totalPrice = sumPriceState - sumDiscountPromo + sumDiscountDelivery
 
+    const formattedNumber =(x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
 
     const dispatch = useDispatch()
 
@@ -67,25 +70,25 @@ const ShoppingCart = () => {
         <div className='shopping_cart'>
             <div className='cart_numbers'>
                 <div className='cart_summ'>Товары</div>
-                <div className='cart_summ_num'>{sumDiscount} ₽</div>
+                <div className='cart_summ_num'>{formattedNumber(sumDiscount)} ₽</div>
             </div>
             <div className='cart_safe_money'>
                 <div className='cart_discount'>
                     <div className='discount_discount'>Скидка</div>
-                    <div className='discount_value'>- {totalDisc} ₽</div>
+                    <div className='discount_value'>- {formattedNumber(totalDisc)} ₽</div>
                 </div>
                 <div className='cart_promo'>
                     <div className='discount_promo'>Акции</div>
-                    <div className='promo_value'>- {sumDiscountSales} ₽</div>
+                    <div className='promo_value'>- {formattedNumber(sumDiscountSales)} ₽</div>
                 </div>
                 <div className='cart_code'>
                     <div className='discount_code'>Промокод</div>
-                    {sumDiscountPromo === 0 ? <div className='code_value'> 0 ₽</div> : <div className='code_value'>- {sumDiscountPromo} ₽</div>}
+                    {sumDiscountPromo === 0 ? <div className='code_value'> 0 ₽</div> : <div className='code_value'>- {formattedNumber(sumDiscountPromo)} ₽</div>}
                 </div>
             </div>
             <div className='cart_delivery'>
                 <div className='delivery_delivery'>Доставка</div>
-                <div className='delivery_value'>{sumDiscountDelivery} ₽</div>
+                <div className='delivery_value'>{formattedNumber(sumDiscountDelivery)} ₽</div>
             </div>
             <img className='grey_line' src={grey_line} alt='img'></img>
             <div className='tovar_so_sklada'>
@@ -110,7 +113,7 @@ const ShoppingCart = () => {
             <img className='grey_line' src={grey_line} alt='img'></img>
             <div className='total_summ'>
                 <div className='total_text'>Итого:</div>
-                <div className='total_num'>{totalPrice} ₽</div>
+                <div className='total_num'>{formattedNumber(totalPrice)} ₽</div>
             </div>
             <input
                 className='input_promo'

@@ -19,6 +19,10 @@ const ProductPrice = ({ price, discountPrice }) => {
     const [priceBeforDiscount, setPriceBeforDiscount] = useState(price)
     const [sumDiscountProduct, setSumDiscountProduct] = useState(price)
 
+    const formattedNumber =(x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -56,8 +60,10 @@ const ProductPrice = ({ price, discountPrice }) => {
     return (
         <div className='product_price'>
             <div className='product_each_price'>
-                {price !== priceReal ? <div className='product_old_price'>{price} ₽</div> : null}
-                <div className='product_new_price'>{priceReal} ₽</div>
+                {price !== priceReal ? <div className='product_old_price'>{formattedNumber(price)} ₽</div> : null}
+                {/* <div className='product_new_price'>{priceReal} ₽</div> */}
+                <div className='product_new_price'>{formattedNumber(priceReal)} ₽</div>
+
             </div>
 
 
@@ -76,8 +82,8 @@ const ProductPrice = ({ price, discountPrice }) => {
                 <img className='quanity_plus' onClick={increase} src={plus} alt='img'></img>
             </div>
             <div className='product_summ_price'>
-                {price !== priceReal ? <div className='product_old_price'>{priceBeforDiscount} ₽</div> : null}
-                <div className='product_new_price'>{priceCount} ₽</div>
+                {price !== priceReal ? <div className='product_old_price'>{formattedNumber(priceBeforDiscount)} ₽</div> : null}
+                <div className='product_new_price'>{formattedNumber(priceCount)} ₽</div>
             </div>
         </div>
     )

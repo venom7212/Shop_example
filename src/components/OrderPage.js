@@ -15,6 +15,9 @@ import ShoppingCart from './ShoppingCart';
 import Maps from './Maps';
 
 import SearchInput from './SearchInput';
+import BurgerMenu from './BurgerMenu';
+
+
 
 
 const productsList = [
@@ -81,6 +84,10 @@ const OrderPage = () => {
     const sumPriceState = useSelector(state => state.sumPrice.sumPriceProduct)
     const sumCount = useSelector(state => state.sumCount.sumCountProduct)
 
+    const formattedNumber =(x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    }
+
     return (
         <div className='order_page'>
 
@@ -92,6 +99,7 @@ const OrderPage = () => {
                 </div>
                 <img className='logo' src={logo} alt='img'></img>
                 <div className='right_menu'>
+                <BurgerMenu/>
                     <img className='search_btn' src={search} alt='img'></img>
                     <img className='account_btn' src={account} alt='img'></img>
                     <img className='favorite_btn' src={favorite} alt='img'></img>
@@ -117,7 +125,7 @@ const OrderPage = () => {
                             </div>
                         </div>
                         <div className='order'>
-                            <div className='summ_orders'>{sumCount} товара на сумму {sumPriceState} ₽</div>
+                            <div className='summ_orders'>{sumCount} товара на сумму {formattedNumber(sumPriceState)} ₽</div>
                             <img className='grey_line' src={grey_line} alt='img'></img>
                             <div className='products'>
                                 {productsList.length ? getProductCards() : <p>Добавьте товар в корзину</p>}

@@ -86,11 +86,13 @@ const ShoppingCart = () => {
             <div className='cart_safe_money'>
                 <div className='cart_discount'>
                     <div className='discount_discount'>Скидка</div>
-                    <div className='discount_value'>- {formattedNumber(sumTotalDisc)} ₽</div>
+                    {sumTotalDisc === 0 ? <div className='discount_value'> 0 ₽</div> : <div className='discount_value'>- {formattedNumber(sumTotalDisc)} ₽</div>}
+
                 </div>
                 <div className='cart_promo'>
                     <div className='discount_promo'>Акции</div>
-                    <div className='promo_value'>- {formattedNumber(sumDiscountSales2)} ₽</div>
+                    {sumDiscountSales2 === 0 ? <div className='promo_value'> 0 ₽</div> : <div className='promo_value'>- {formattedNumber(sumDiscountSales2)} ₽</div>}
+
                 </div>
                 <div className='cart_code'>
                     <div className='discount_code'>Промокод</div>

@@ -3,7 +3,6 @@ import ProductColorBtn from '../components/ProductColorBtn'
 
 const ProductColor = ({ colors }) => {
     const [currentActiveIndex, setCurrentActiveIndex] = useState(-1);
-    // console.log(colors)
     const getProductSizesBtnFor = (a) => {
         const result = []
         const obj = colors[0];

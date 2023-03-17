@@ -3,40 +3,45 @@ import { useSelector, useDispatch } from 'react-redux'
 import activeOff from '../resources/active_off.png'
 import activeOn from '../resources/active_on.png'
 import grey_line from '../resources/grey_line.png'
-import { setDeliveryState } from '../redux/features/shop/sumDiscountSlice.js'
-import { setPromoValue } from '../redux/features/shop/sumDiscountSlice.js'
+import {
+    sumDiscountProduct2,
+    sumDiscountSales3,
+    sumDiscountPromo3,
+    sumTotalDisc2,
+    totalPrice3,
+    sumDiscountDelivery2
+} from '../redux/features/shop/productsListSlice.js'
+
 
 
 const ShoppingCart = () => {
-    const sumDiscount = useSelector(state => state.sumDiscount.sumDiscountProduct)
-    const sumDiscountSales = useSelector(state => state.sumDiscount.sumDiscountSales)
-    const sumDiscountPromo = useSelector(state => state.sumDiscount.sumDiscountPromo)
-    const sumDiscountDelivery = useSelector(state => state.sumDiscount.sumDiscountDelivery)
-    const sumPriceState = useSelector(state => state.sumPrice.sumPriceProduct)
+    const sumDiscountProduct = useSelector(state => state.productsList.sumDiscountProduct)
+    const sumDiscountSales2 = useSelector(state => state.productsList.sumDiscountSales)
+    const sumDiscountPromo2 = useSelector(state => state.productsList.sumDiscountPromo)
+    const sumTotalDisc = useSelector(state => state.productsList.sumTotalDisc)
+    const totalPrice2 = useSelector(state => state.productsList.totalPrice2)
+    const sumDiscountDelivery = useSelector(state => state.productsList.sumDiscountDelivery)
 
+    const dispatch = useDispatch()
+    const sumCount = useSelector(state => state.productsList.sumCount)
     const [promoVerification, setPromoVerification] = useState('');
     const [isActive, setActive] = useState(false);
-
-    const totalDisc = sumDiscountSales + sumDiscountPromo
-    const totalPrice = sumPriceState - sumDiscountPromo + sumDiscountDelivery
-
-    const formattedNumber =(x) => {
+    const formattedNumber = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
-    const dispatch = useDispatch()
 
     const changeDelivery = () => {
         if (isActive === false) {
             setActive(
                 true
             )
-            dispatch(setDeliveryState(0))
+            dispatch(sumDiscountDelivery2(0))
         } else {
             setActive(
                 false
             )
-            dispatch(setDeliveryState(200))
+            dispatch(sumDiscountDelivery2(200))
         }
         setActive(
             !isActive
@@ -53,37 +58,43 @@ const ShoppingCart = () => {
         const promoVerification = value.trim().toLowerCase()
         switch (promoVerification) {
             case '777':
-                dispatch(setPromoValue(700))
+                dispatch(sumDiscountPromo3(700))
                 break
             case '666':
-                dispatch(setPromoValue(500))
+                dispatch(sumDiscountPromo3(500))
                 break
             case '123':
-                dispatch(setPromoValue(100))
+                dispatch(sumDiscountPromo3(100))
                 break
             default:
-                dispatch(setPromoValue(0))
+                dispatch(sumDiscountPromo3(0))
         }
     }
+    useEffect(() => {
+        dispatch(sumDiscountProduct2())
+        dispatch(sumDiscountSales3())
+        dispatch(sumTotalDisc2())
+        dispatch(totalPrice3())
+    }, [sumCount], [sumDiscountPromo2]);
 
     return (
         <div className='shopping_cart'>
             <div className='cart_numbers'>
                 <div className='cart_summ'>Товары</div>
-                <div className='cart_summ_num'>{formattedNumber(sumDiscount)} ₽</div>
+                <div className='cart_summ_num'>{formattedNumber(sumDiscountProduct)} ₽</div>
             </div>
             <div className='cart_safe_money'>
                 <div className='cart_discount'>
                     <div className='discount_discount'>Скидка</div>
-                    <div className='discount_value'>- {formattedNumber(totalDisc)} ₽</div>
+                    <div className='discount_value'>- {formattedNumber(sumTotalDisc)} ₽</div>
                 </div>
                 <div className='cart_promo'>
                     <div className='discount_promo'>Акции</div>
-                    <div className='promo_value'>- {formattedNumber(sumDiscountSales)} ₽</div>
+                    <div className='promo_value'>- {formattedNumber(sumDiscountSales2)} ₽</div>
                 </div>
                 <div className='cart_code'>
                     <div className='discount_code'>Промокод</div>
-                    {sumDiscountPromo === 0 ? <div className='code_value'> 0 ₽</div> : <div className='code_value'>- {formattedNumber(sumDiscountPromo)} ₽</div>}
+                    {sumDiscountPromo2 === 0 ? <div className='code_value'> 0 ₽</div> : <div className='code_value'>- {formattedNumber(sumDiscountPromo2)} ₽</div>}
                 </div>
             </div>
             <div className='cart_delivery'>
@@ -98,12 +109,10 @@ const ShoppingCart = () => {
 
                         <div className='test_btn' onClick={changeDelivery}>
                             {
-                                isActive == false ?
+                                isActive === false ?
                                     <img className='' src={activeOff} alt='img'></img>
                                     : <img className='' src={activeOn} alt='img'></img>
                             }
-   
-
                         </div>
 
                     </div>
@@ -113,7 +122,7 @@ const ShoppingCart = () => {
             <img className='grey_line' src={grey_line} alt='img'></img>
             <div className='total_summ'>
                 <div className='total_text'>Итого:</div>
-                <div className='total_num'>{formattedNumber(totalPrice)} ₽</div>
+                <div className='total_num'>{formattedNumber(totalPrice2)} ₽</div>
             </div>
             <input
                 className='input_promo'

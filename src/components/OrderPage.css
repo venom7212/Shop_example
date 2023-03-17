@@ -1,8 +1,9 @@
     @media (min-width: 1241px) {
-        .burger-menu{
+        .burger-menu {
             display: none;
 
         }
+
         .order_page {
             display: flex;
             width: 1200px;
@@ -1506,6 +1507,86 @@
             height: 450px;
         }
 
+        .recoveryCard {
+            position: relative;
+            background: #F1F1F1;
+            display: flex;
+            height: 52px;
+            padding-left: 25px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-right: 15px;
+            align-items: center;
+            margin-top: 25px;
+            margin-bottom: 25px;
+
+
+        }
+
+        .texts {
+            display: flex;
+        }
+
+        .delText {}
+
+        .text1 {
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 21px;
+            color: #6E6E6E;
+            margin-right: 5px;
+
+        }
+
+        .text2 {
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 15px;
+            line-height: 21px;
+            color: #6E6E6E;
+            margin-right: 5px;
+
+
+        }
+
+        .text3 {
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 21px;
+            color: #6E6E6E;
+        }
+
+        .recoveryText {
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            margin-right: 15px;
+
+
+        }
+
+        .recoveryBlock {
+            display: flex;
+            position: absolute;
+            right: 0px;
+            /* margin-left: auto; */
+            /* margin-right: 5px; */
+        }
+
+        .productRecovery {}
+
+        .productRecoveryDiv {
+            height: 22px;
+            width: 22px;
+            margin-right: 5px;
+        }
     }
 
 
@@ -1569,19 +1650,23 @@
             margin-left: auto; */
             /* display: none; */
         }
-        .search_btn{
+
+        .search_btn {
             display: none;
 
         }
-        .account_btn{
+
+        .account_btn {
             display: none;
 
         }
-        .favorite_btn{
+
+        .favorite_btn {
             display: none;
 
         }
-        .products_btn{
+
+        .products_btn {
             /* display: none; */
             margin-right: 25px;
 
@@ -1697,7 +1782,7 @@
             margin-top: 16px;
             margin-bottom: 16px;
             position: relative;
-            
+
         }
 
         .product_card_left_side {
@@ -2803,8 +2888,104 @@
             height: 280px;
         }
 
+        .recoveryCard {
+            position: relative;
+
+            background: #F1F1F1;
+            display: flex;
+            height: 52px;
+            padding-left: 10px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            /* padding-right: 15px; */
+            align-items: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+
+        }
+
+        .texts {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .delText {}
+
+        .text1 {
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: #6E6E6E;
+            margin-right: 5px;
+
+        }
+
+        .text2 {
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 12px;
+            line-height: 16px;
+            color: #6E6E6E;
+            margin-right: 5px;
+            white-space: nowrap;
+            overflow: hidden;
 
 
-       
+
+
+        }
+
+        .text3 {
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: #6E6E6E;
+        }
+
+        .recoveryText {
+            position: relative;
+            font-family: 'Helvetica';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 14px;
+            right: -12px;
+
+
+        }
+
+        .recoveryBlock {
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            right: 0px;
+            bottom: 0px;
+
+        }
+
+        .productRecovery {
+            height: 15px;
+            width: 15px;
+        }
+
+        .productRecoveryDiv {
+
+            position: relative;
+            height: 15px;
+            width: 15px;
+            /* margin-right: 0px; */
+            /* margin-left: auto; */
+            top: -38px;
+
+        }
+
+
+
 
     }

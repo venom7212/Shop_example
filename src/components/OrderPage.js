@@ -8,89 +8,41 @@ import search from '../resources/search.png'
 import account from '../resources/account.png'
 import favorite from '../resources/favorite.png'
 import bag from '../resources/bag.png'
-import item_1 from '../resources/item_1.png'
-import item_2 from '../resources/item_2.png'
+
 import ProductCard from './ProductCard';
 import ShoppingCart from './ShoppingCart';
 import Maps from './Maps';
-
 import SearchInput from './SearchInput';
 import BurgerMenu from './BurgerMenu';
+import { sumPrice2 } from '../redux/features/shop/productsListSlice.js'
 
-
-
-
-const productsList = [
-    {
-        id: 1,
-        name: 'Утепленная стеганная куртка женская Top Hills',
-        articl: '512-05',
-        season: 'Осень-зима',
-        price: 12000,
-        discountPrice: 2000,
-        img: item_1,
-        sizes: [
-            {
-                XS: 0,
-                S: 10,
-                M: 10,
-                L: 10,
-                XL: 10
-            }
-        ],
-        colors: [
-            {
-                black: 10,
-                blue: 10,
-                brown: 10,
-            }
-        ],
-    },
-    {
-        id: 1,
-        name: 'Вязанная шапка Zolla',
-        articl: '891-256',
-        season: 'Демисезон',
-        price: 500,
-        discountPrice: 0,
-        img: item_2,
-        sizes: [
-            {
-                XS: 10,
-                S: 10,
-                M: 0,
-                L: 1,
-                XL: 10
-            }
-        ],
-        colors: [
-            {
-                black: 10,
-            }
-        ],
-    }
-]
-
-const getProductCards = () => {
-    return productsList.map((item, index) => {
-        return <ProductCard productsData={item} key={index} />
-    });
-
-}
 
 
 
 const OrderPage = () => {
-    const sumPriceState = useSelector(state => state.sumPrice.sumPriceProduct)
-    const sumCount = useSelector(state => state.sumCount.sumCountProduct)
+    const productsList = useSelector(state => state.productsList.list)
+    const sumCount = useSelector(state => state.productsList.sumCount)
+    const sumPrice = useSelector(state => state.productsList.sumPrice)
+    const dispatch = useDispatch()
 
-    const formattedNumber =(x) => {
+    useEffect(() => {
+        dispatch(sumPrice2())
+    }, [sumCount]);
+
+
+
+    const getProductCards = () => {
+        return productsList.map((item, index) => {
+            return <ProductCard productsData={item} key={index} id={item.id} isRemoved={item.isRemoved} counts={item.counts} />
+        });
+
+    }
+    const formattedNumber = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
 
     return (
         <div className='order_page'>
-
             <div className='header_menu'>
                 <div className='left_menu'>
                     <div className='catalog'>Каталог</div>
@@ -99,7 +51,7 @@ const OrderPage = () => {
                 </div>
                 <img className='logo' src={logo} alt='img'></img>
                 <div className='right_menu'>
-                <BurgerMenu/>
+                    <BurgerMenu />
                     <img className='search_btn' src={search} alt='img'></img>
                     <img className='account_btn' src={account} alt='img'></img>
                     <img className='favorite_btn' src={favorite} alt='img'></img>
@@ -125,18 +77,15 @@ const OrderPage = () => {
                             </div>
                         </div>
                         <div className='order'>
-                            <div className='summ_orders'>{sumCount} товара на сумму {formattedNumber(sumPriceState)} ₽</div>
+                            <div className='summ_orders'>{sumCount} товара на сумму {formattedNumber(sumPrice)} ₽</div>
                             <img className='grey_line' src={grey_line} alt='img'></img>
                             <div className='products'>
                                 {productsList.length ? getProductCards() : <p>Добавьте товар в корзину</p>}
                             </div>
                         </div>
                     </div>
-                    
-                    <div className='ShoppingCart_1240'><ShoppingCart /></div> 
-                    
+                    <div className='ShoppingCart_1240'><ShoppingCart /></div>
                 </div>
-                
                 <div className='bottom_info'>
                     <div className='contacts_info'>
                         <div className='all_contacts_info'>
@@ -158,10 +107,10 @@ const OrderPage = () => {
                             </div>
                         </div>
                         <div className='contacts_map'>
-                        <div className='maps'>
-                            <Maps />
+                            <div className='maps'>
+                                <Maps />
+                            </div>
                         </div>
-                    </div>
 
                     </div>
                     <div className='kekw'>
@@ -185,22 +134,12 @@ const OrderPage = () => {
                             <textarea className='pay_comment_input' placeholder='Комментарий к заказу'></textarea>
                             <div className='pay_comment_symbol'>Использовано 0/142 символов</div>
                         </div>
-                        </div>
-                   
-                        <div className='ShoppingCart_1239'><ShoppingCart /></div> 
-
-
-
+                    </div>
+                    <div className='ShoppingCart_1239'><ShoppingCart /></div>
                 </div>
-
             </div>
-
-
         </div>
-
     )
-
-
 }
 
 export default OrderPage

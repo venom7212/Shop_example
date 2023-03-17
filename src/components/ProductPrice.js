@@ -2,36 +2,27 @@ import React, { useEffect, useState } from 'react';
 import minus from '../resources/minus.png'
 import minusInactiv from '../resources/minus_inactiv.png'
 import plus from '../resources/plus.png'
-import plusInactiv from '../resources/plus_inactiv.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { inctPrice, decPrice } from '../redux/features/shop/sumPriceSlice'
-import { decCount, inctCount } from '../redux/features/shop/sumCountSlice.js'
-import { incSumDisc, decSumDisc, incSalesDisc, decSalesDisc } from '../redux/features/shop/sumDiscountSlice.js'
+import { decCount2, inctCount2 } from '../redux/features/shop/productsListSlice.js'
 
-
-
-
-
-const ProductPrice = ({ price, discountPrice }) => {
+const ProductPrice = ({ price, discountPrice,counts,id}) => {
     const priceReal = price - discountPrice
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(counts);
     const [priceCount, setPriceCount] = useState(priceReal)
     const [priceBeforDiscount, setPriceBeforDiscount] = useState(price)
-    const [sumDiscountProduct, setSumDiscountProduct] = useState(price)
 
-    const formattedNumber =(x) => {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    const formattedNumber =(defNumber) => {
+        return defNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
     }
-
     const dispatch = useDispatch()
 
     useEffect(() => {
-
         setPriceBeforDiscount(
-            price * count
+            price * counts
         )
         setPriceCount(
-            priceReal * count
+            priceReal * counts
         )
 
     }, [count]);
@@ -39,46 +30,30 @@ const ProductPrice = ({ price, discountPrice }) => {
     const increase = () => {
         setCount(count + 1);
         dispatch(inctPrice(priceReal))
-        dispatch(inctCount(count))
-        dispatch(incSumDisc(sumDiscountProduct))
-        dispatch(incSalesDisc(discountPrice))
-
+        dispatch(inctCount2(id))
     }
 
     const decrease = () => {
-        if (count === 1) {
+        if (counts === 1) {
             return;
         }
         setCount(count - 1);
         dispatch(decPrice(priceReal))
-        dispatch(decCount(count))
-        dispatch(decSumDisc(sumDiscountProduct))
-        dispatch(decSalesDisc(discountPrice))
-
+        dispatch(decCount2(id))
     }
-
     return (
         <div className='product_price'>
             <div className='product_each_price'>
                 {price !== priceReal ? <div className='product_old_price'>{formattedNumber(price)} ₽</div> : null}
-                {/* <div className='product_new_price'>{priceReal} ₽</div> */}
                 <div className='product_new_price'>{formattedNumber(priceReal)} ₽</div>
-
             </div>
-
-
-            {/* <div>test : and{sumPriceState}</div> */}
-
-
-
             <div className='product_quanity'>
                 {
-                    count == 1 ?
+                    counts == 1 ?
                         <img className='quanity_minus' onClick={decrease} src={minusInactiv} alt='img'></img>
                         : <img className='quanity_minus' onClick={decrease} src={minus} alt='img'></img>
                 }
-                <div className='quanity_count'>{count}</div>
-
+                <div className='quanity_count'>{counts}</div>
                 <img className='quanity_plus' onClick={increase} src={plus} alt='img'></img>
             </div>
             <div className='product_summ_price'>
@@ -88,8 +63,5 @@ const ProductPrice = ({ price, discountPrice }) => {
         </div>
     )
 }
-
-
-
 
 export default ProductPrice

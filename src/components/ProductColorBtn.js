@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 const ProductColorBtn = ({ colors, isActive, unavailable, activeCount, onclick, length }) => {
     const buttonStyle = `togle_off ${isActive ? 'togle_on' : ''}`
-
-
     if (unavailable <= 0) {
         return (
             null

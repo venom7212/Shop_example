@@ -13,7 +13,6 @@ export const sumCountSlice = createSlice({
         decCount: (state, action) => {
             state.sumCountProduct -= 1
         },
-
     }
 })
 export const { inctCount, decCount } = sumCountSlice.actions
